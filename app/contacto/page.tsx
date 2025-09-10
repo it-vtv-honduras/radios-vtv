@@ -64,7 +64,7 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4">
+              {/*  <div className="flex items-start gap-4">
                   <div className="p-3 bg-primary/10 rounded-lg">
                     <Mail className="h-6 w-6 text-primary" />
                   </div>
@@ -79,7 +79,7 @@ export default function ContactPage() {
                       contacto@radiostream.com
                     </p>
                   </div>
-                </div>
+                </div>*/}
 
                 <div className="flex items-start gap-4">
                   <div className="p-3 bg-primary/10 rounded-lg">

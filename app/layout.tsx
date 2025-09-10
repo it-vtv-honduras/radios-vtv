@@ -14,8 +14,8 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://stream-radios.netli
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Central de Radios",
-    template: "%s | Central de Radios",
+    default: "Radios Grupo VTV",
+    template: "%s | Radios Grupo VTV",
   },
   description:
     "Escucha radios en vivo por internet: Picosa, Joya FM, La Pegajosa, Acción Radio, Mía FM y más.",
@@ -30,6 +30,8 @@ export const metadata: Metadata = {
     "emisoras online",
     "radios de Honduras",
     "escuchar radio online",
+     "vtv honduras",
+     "vtv",
   ],
   alternates: {
     canonical: "/",
@@ -40,24 +42,24 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    siteName: "Central de Radios",
+    siteName: "Radios Grupo VTV",
     url: siteUrl,
     title: "Escuchar radios en vivo",
     description:
-      "Escucha Picosa Radio, Joya FM, Radio Hit (La Pegajosa), Acción Radio y Mía FM online 24/7.",
+      "Escucha Picosa Radio, Joya FM, La Pegajosa, Acción Radio y Mía FM online 24/7.",
     images: [
       {
         url: "/og/radios-1200x630.png",
         width: 1200,
         height: 630,
-        alt: "Central de Radios - radios online",
+        alt: "Radios Grupo VTV - radios online",
       },
     ],
     locale: "es_HN",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Central de Radios",
+    title: "Radios Grupo VTV",
     description:
       "Escucha emisoras online en vivo: Picosa, Joya FM, Radio Hit, Acción Radio, Mía FM y más.",
     images: ["/og/radios-1200x630.png"],
@@ -92,7 +94,7 @@ export default function RootLayout({
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
-            name: "Central de Radios",
+            name: "Radios Grupo VTV",
             url: siteUrl,
             logo: `${siteUrl}/icon-512.png`,
           })}

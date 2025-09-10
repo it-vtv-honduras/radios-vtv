@@ -53,7 +53,7 @@ export default function HomePage() {
     <>
       <main className="container mx-auto px-4 py-8 md:pb-32">
         <h1 className="text-3xl font-bold text-center mb-8 text-gray-900 dark:text-white">
-          Radio Stream
+          Radios Grupo VTV
         </h1>
 
         {featuredStation && (

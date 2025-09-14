@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
 import ClientLayout from "./ClientLayout";
+import { ThemeProvider } from "next-themes";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
@@ -12,10 +13,7 @@ const siteUrl = "https://www.radiosgrupovtv.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: {
-    default: "Radios Grupo VTV",
-    template: "%s | Radios Grupo VTV",
-  },
+  title: { default: "Radios Grupo VTV", template: "%s | Radios Grupo VTV" },
   description:
     "Escucha radios en vivo por internet: Picosa, Joya FM, La Pegajosa, Acción Radio, Mía FM y más.",
   keywords: [
@@ -29,16 +27,10 @@ export const metadata: Metadata = {
     "emisoras online",
     "radios de Honduras",
     "escuchar radio online",
-     "vtv honduras",
-     "vtv",
+    "vtv honduras",
+    "vtv",
   ],
-  alternates: {
-    canonical: "/",
-    languages: {
-      "es-HN": "/",
-      es: "/",
-    },
-  },
+  alternates: { canonical: "/", languages: { "es-HN": "/", es: "/" } },
   openGraph: {
     type: "website",
     siteName: "Radios Grupo VTV",
@@ -74,30 +66,30 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-  icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
-  },
+  icons: { icon: "/favicon.ico", apple: "/apple-touch-icon.png" },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="es" suppressHydrationWarning>
       <head>
         {/* JSON-LD: Organization (global) */}
-        <Script id="ld-org" type="application/ld+json" strategy="afterInteractive">
+        <Script
+          id="ld-org"
+          type="application/ld+json"
+          strategy="afterInteractive"
+        >
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
             name: "Radios Grupo VTV",
-            url: siteUrl
+            url: siteUrl,
           })}
         </Script>
-
         {/* Google AdSense */}
         <Script
           async
@@ -105,9 +97,21 @@ export default function RootLayout({
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />
+        {/* Ayuda a indicar esquema de color al navegador */}
+        <meta name="color-scheme" content="light dark" />
       </head>
-      <body className={`${inter.className} bg-white dark:bg-gray-900 text-gray-900 dark:text-white`}>
-        <ClientLayout>{children}</ClientLayout>
+      <body
+        className={`${inter.className} bg-white dark:bg-gray-900 text-gray-900 dark:text-white`}
+      >
+        {/* ÚNICO ThemeProvider en toda la app */}
+        <ThemeProvider
+          attribute="class" // agrega 'dark'/'light' a <html>
+          defaultTheme="dark" // respeta el sistema en el primer paint
+          enableSystem
+          disableTransitionOnChange // evita parpadeos de transición
+        >
+          <ClientLayout>{children}</ClientLayout>
+        </ThemeProvider>
       </body>
     </html>
   );

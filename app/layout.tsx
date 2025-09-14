@@ -8,8 +8,7 @@ import ClientLayout from "./ClientLayout";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
-// Dominio público (configúralo en Netlify → NEXT_PUBLIC_SITE_URL)
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://stream-radios.netlify.app";
+const siteUrl = "https://www.radiosgrupovtv.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -95,8 +94,7 @@ export default function RootLayout({
             "@context": "https://schema.org",
             "@type": "Organization",
             name: "Radios Grupo VTV",
-            url: siteUrl,
-            logo: `${siteUrl}/icon-512.png`,
+            url: siteUrl
           })}
         </Script>
 

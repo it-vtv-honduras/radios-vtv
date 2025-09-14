@@ -1,7 +1,7 @@
 // app/robots.ts
 import type { MetadataRoute } from "next";
 
-const SITE_URL = "https://stream-radios.netlify.app";
+const SITE_URL = "https://www.radiosgrupovtv.com";
 
 export default function robots(): MetadataRoute.Robots {
   return {

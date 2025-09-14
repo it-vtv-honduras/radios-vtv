@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next";
 import { getAllStations } from "@/lib/station.service";
 import { stationSynonyms, normalize } from "@/lib/seo-stations";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://stream-radios.netlify.app";
+const SITE_URL = "https://www.radiosgrupovtv.com/";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const stations = await getAllStations();

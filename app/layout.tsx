@@ -99,6 +99,7 @@ export default function RootLayout({
         />
         {/* Ayuda a indicar esquema de color al navegador */}
         <meta name="color-scheme" content="light dark" />
+        <meta name="google-adsense-account" content="ca-pub-4210489377880865"></meta>
       </head>
       <body
         className={`${inter.className} bg-white dark:bg-gray-900 text-gray-900 dark:text-white`}

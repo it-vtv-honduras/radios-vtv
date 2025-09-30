@@ -27,6 +27,23 @@ const nextConfig = {
     "http://127.0.0.1:3000",
     "http://192.168.0.3:3000",
   ],
+async headers() {
+  return [
+    {
+      source: '/ads.txt',
+      headers: [
+        {
+          key: 'Content-Type',
+          value: 'text/plain; charset=utf-8',
+        },
+        {
+          key: 'Cache-Control',
+          value: 'public, max-age=3600',
+        },
+      ],
+    },
+  ];
+},
 
   async redirects() {
     const rules = [];

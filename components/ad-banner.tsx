@@ -28,7 +28,7 @@ export function AdBanner({ adSlot, adFormat = "auto", fullWidthResponsive = true
       <ins
         className="adsbygoogle"
         style={{ display: "block" }}
-        data-ad-client="ca-pub-XXXXXXXXXXXXXXXXX" // Reemplazar con tu Publisher ID
+        data-ad-client="ca-pub-4210489377880865"
         data-ad-slot={adSlot}
         data-ad-format={adFormat}
         data-full-width-responsive={fullWidthResponsive.toString()}
@@ -57,7 +57,7 @@ export function AdInterstitial({ adSlot, onClose }: { adSlot: string; onClose: (
             <ins
               className="adsbygoogle"
               style={{ display: "block" }}
-              data-ad-client="ca-pub-XXXXXXXXXXXXXXXXX"
+              data-ad-client="ca-pub-4210489377880865"
               data-ad-slot={adSlot}
               data-ad-format="auto"
             />
@@ -76,12 +76,10 @@ export function AdNative({ adSlot, className = "" }: { adSlot: string; className
   const adRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (typeof window !== "undefined" && (window as any).adsbygoogle) {
-      try {
-        ;((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({})
-      } catch (error) {
-        console.error("Error loading native ad:", error)
-      }
+    try {
+      ;((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({})
+    } catch (e) {
+      console.error("Adsense error", e)
     }
   }, [])
 
@@ -92,7 +90,7 @@ export function AdNative({ adSlot, className = "" }: { adSlot: string; className
         style={{ display: "block" }}
         data-ad-format="fluid"
         data-ad-layout-key="-6t+ed+2i-1n-4w"
-        data-ad-client="ca-pub-XXXXXXXXXXXXXXXXX"
+        data-ad-client="ca-pub-4210489377880865"
         data-ad-slot={adSlot}
       />
     </div>

@@ -6,7 +6,8 @@ import "./globals.css";
 import Script from "next/script";
 import ClientLayout from "./ClientLayout";
 import { ThemeProvider } from "next-themes";
-
+import AdSenseTest from "./AdSenseTest"
+import { AdBanner } from "@/components/ad-banner";
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 const siteUrl = "https://www.radiosgrupovtv.com";
@@ -111,6 +112,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange // evita parpadeos de transición
         >
+          <AdBanner adSlot="1234567890" className="my-6" />
           <ClientLayout>{children}</ClientLayout>
         </ThemeProvider>
       </body>

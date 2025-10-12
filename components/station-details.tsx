@@ -4,9 +4,7 @@ import type { Station } from "@/lib/types";
 import {
   Play,
   Pause,
-  Users,
   Clock,
-  Heart,
   AlertCircle,
   ExternalLink,
   MapPin,
@@ -20,8 +18,8 @@ import {
 import Image from "next/image";
 import { useAudio } from "./audio-provider";
 import { useState } from "react";
-import { AdBanner, AdNative } from "./ad-banner";
 import Link from "next/link";
+import { AdBanner } from "./ad-banner";
 
 interface StationDetailsProps {
   station: Station;
@@ -35,16 +33,11 @@ export function StationDetails({ station }: StationDetailsProps) {
   const hasError = error && currentStation?.id === station.id;
 
   const handlePlayPause = () => {
-    if (isCurrentlyPlaying) {
-      pause();
-    } else {
-      play(station);
-    }
+    if (isCurrentlyPlaying) pause();
+    else play(station);
   };
 
-  const toggleFavorite = () => {
-    setIsFavorite(!isFavorite);
-  };
+  const toggleFavorite = () => setIsFavorite((v) => !v);
 
   const getSocialIcon = (platform: string) => {
     switch (platform) {
@@ -64,32 +57,46 @@ export function StationDetails({ station }: StationDetailsProps) {
   };
 
   return (
-    <div className="max-w-4xl mx-auto md:pb-32">
-      {/* Banner publicitario 
-      <div className="mb-8">
-        <AdBanner adSlot="1111111111" className="text-center" />
-      </div>
-      */}
+    <article
+      className="max-w-4xl mx-auto md:pb-30"
+      itemScope
+      itemType="https://schema.org/RadioStation"
+      aria-labelledby="station-title"
+    >
       <div className="flex flex-col md:flex-row gap-8">
-        <div className="relative w-full md:w-1/3 aspect-square rounded-lg overflow-hidden">
+        <figure className="relative w-full md:w-1/3 aspect-square rounded-lg overflow-hidden">
           <Image
             src={station.coverImage || "/placeholder.svg?height=400&width=400"}
-            alt={station.name}
+            alt={`Logo o portada de ${station.name}`}
             fill
             className="object-fill"
+            sizes="(max-width: 768px) 100vw, 33vw"
+            priority={false}
           />
-        </div>
-        
+          {/* Microdato de logo */}
+          <meta itemProp="logo" content={station.coverImage || ""} />
+        </figure>
 
         <div className="flex-1">
-          <h1 className="text-3xl font-bold mb-4 md:mb-2 text-gray-900 dark:text-white text-center md:text-left">
+          {/* Importante: H1 debe estar en la página, aquí usamos H2 */}
+          <h2
+            id="station-title"
+            className="text-3xl font-bold mb-4 md:mb-2 text-gray-900 dark:text-white text-center md:text-left"
+            itemProp="name"
+          >
             {station.name}
-          </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 mb-4 text-center md:text-left">
-            {station.genre}
-          </p>
+          </h2>
 
-           {/* Información adicional */}
+          {station.genre && (
+            <p
+              className="text-xl text-gray-600 dark:text-gray-300 mb-4 text-center md:text-left"
+              itemProp="genre"
+            >
+              {station.genre}
+            </p>
+          )}
+
+          {/* Meta info */}
           <div className="flex flex-wrap gap-4 mb-6 justify-center md:justify-start">
             {station.frequency && (
               <div className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
@@ -99,9 +106,14 @@ export function StationDetails({ station }: StationDetailsProps) {
             )}
 
             {station.location && (
-              <div className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
+              <div
+                className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400"
+                itemProp="address"
+                itemScope
+                itemType="https://schema.org/PostalAddress"
+              >
                 <MapPin size={16} />
-                <span>{station.location}</span>
+                <span itemProp="addressLocality">{station.location}</span>
               </div>
             )}
 
@@ -110,7 +122,6 @@ export function StationDetails({ station }: StationDetailsProps) {
               <span>24/7</span>
             </div>
           </div>
-          
 
           {hasError && (
             <div className="mb-6 p-3 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-md flex items-center gap-2">
@@ -119,10 +130,12 @@ export function StationDetails({ station }: StationDetailsProps) {
             </div>
           )}
 
+          {/* Controles */}
           <div className="flex flex-wrap gap-4 mb-6 md:justify-start justify-center">
             <button
               onClick={handlePlayPause}
               className="px-8 py-3 bg-primary hover:bg-primary/90 text-white rounded-full flex items-center space-x-2"
+              aria-pressed={!!isCurrentlyPlaying}
             >
               {isCurrentlyPlaying ? (
                 <>
@@ -136,11 +149,20 @@ export function StationDetails({ station }: StationDetailsProps) {
                 </>
               )}
             </button>
+
+            {/* Favorito (estado accesible) */}
+            <button
+              onClick={toggleFavorite}
+              className="px-4 py-3 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full text-gray-700 dark:text-gray-300"
+              aria-pressed={isFavorite}
+            >
+              Favorito
+            </button>
           </div>
 
           {/* Tags */}
           {station.tags && station.tags.length > 0 && (
-            <div className="mb-6">
+            <div className="mb-6" aria-label="Etiquetas de la estación">
               <div className="flex flex-wrap gap-1">
                 {station.tags.map((tag) => (
                   <span
@@ -155,44 +177,49 @@ export function StationDetails({ station }: StationDetailsProps) {
           )}
         </div>
       </div>
-
-      {/* Anuncio nativo 
-      <div className="my-12">
-        <AdNative adSlot="2222222222" className="rounded-lg overflow-hidden" />
+      
+      <div className="mt-2 w-full">
+        <AdBanner adSlot="6394962158" adFormat="auto" className="text-center" />
       </div>
-      */}
-      {/* Descripción General */}
-      <div className="mt-12">
-        <h2 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-white text-center md:text-left">
-          Acerca de esta estación
-        </h2>
-        <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-5">
-          {station.description ||
-            "Esta estación de radio ofrece una selección de música las 24 horas del día, los 7 días de la semana. Sintoniza para disfrutar de la mejor programación musical y contenido exclusivo."}
-        </p>
 
-        {/* Locutores generales */}
-        {station.locutores && (
-          <div className="mt-6">
-            <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white text-center md:text-left">
-              Nuestros Locutores
-            </h3>
-            <p className="text-gray-600 dark:text-gray-300">
-              {station.locutores}
+      {/* Descripción */}
+      {(station.description || station.locutores) && (
+        <section className="mt-12">
+          <h3 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-white text-center md:text-left">
+            Acerca de esta estación
+          </h3>
+
+          {station.description && (
+            <p
+              className="text-gray-600 dark:text-gray-300 leading-relaxed mb-5"
+              itemProp="description"
+            >
+              {station.description}
             </p>
-          </div>
-        )}
-      </div>
+          )}
 
-      {/* Sección de Programación - Solo visualización */}
+          {station.locutores && (
+            <div className="mt-6">
+              <h4 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white text-center md:text-left">
+                Nuestros Locutores
+              </h4>
+              <p className="text-gray-600 dark:text-gray-300">
+                {station.locutores}
+              </p>
+            </div>
+          )}
+        </section>
+      )}
+
+      {/* Programación */}
       {station.programming && station.programming.length > 0 && (
-        <div className="mt-6">
-          <h2 className="text-2xl font-semibold mb-6 text-gray-900 dark:text-white text-center md:text-left">
+        <section className="mt-6" aria-label="Programación">
+          <h3 className="text-2xl font-semibold mb-6 text-gray-900 dark:text-white text-center md:text-left">
             Programación
-          </h2>
+          </h3>
           <div className="space-y-4">
             {station.programming.map((segment) => (
-              <div
+              <article
                 key={segment.id}
                 className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700"
               >
@@ -210,18 +237,18 @@ export function StationDetails({ station }: StationDetailsProps) {
                     {segment.locutores}
                   </p>
                 )}
-              </div>
+              </article>
             ))}
           </div>
-        </div>
+        </section>
       )}
 
       {/* Redes sociales */}
-      {station.social && Object.values(station.social).some((url) => !!url) && (
-        <div className="mt-12">
-          <h2 className="text-2xl font-semibold mb-5 text-gray-900 dark:text-white text-center md:text-left">
+      {station.social && Object.values(station.social).some(Boolean) && (
+        <section className="mt-12">
+          <h3 className="text-2xl font-semibold mb-5 text-gray-900 dark:text-white text-center md:text-left">
             Síguenos en Redes Sociales
-          </h2>
+          </h3>
           <div className="flex flex-wrap gap-4 justify-center">
             {Object.entries(station.social).map(([platform, url]) => {
               if (!url) return null;
@@ -239,8 +266,8 @@ export function StationDetails({ station }: StationDetailsProps) {
               );
             })}
           </div>
-        </div>
+        </section>
       )}
-    </div>
+    </article>
   );
 }

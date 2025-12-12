@@ -9,11 +9,16 @@ import {
   faqJsonLd,
 } from "@/lib/seo-stations";
 
-type Props = { params: { id: string }; children: ReactNode };
+// 🔥 Ahora params es una Promise
+type Props = { 
+  params: Promise<{ id: string }>; 
+  children: ReactNode 
+};
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   try {
-    const station = await getStationById(params.id);
+    const { id } = await params; // 🔥 Hacer await de params
+    const station = await getStationById(id);
     return station ? stationToMetadata(station) : {};
   } catch {
     return {};
@@ -21,7 +26,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function StationLayout({ params, children }: Props) {
-  const station = await getStationById(params.id).catch(() => null);
+  const { id } = await params; // 🔥 Hacer await de params
+  const station = await getStationById(id).catch(() => null);
 
   const jsonLd = station
     ? [stationJsonLd(station), breadcrumbJsonLd(station), faqJsonLd(station)]

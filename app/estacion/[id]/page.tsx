@@ -11,17 +11,16 @@ export async function generateStaticParams() {
   }));
 }
 
-// 🔥 Configurar como estática (se revalida con revalidatePath)
+// 🔥 Configurar como estática
 export const dynamic = 'force-static';
 
 interface PageProps {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>; // 🔥 Ahora es Promise
 }
 
 export default async function StationPage({ params }: PageProps) {
-  const station = await getStationById(params.id);
+  const { id } = await params; // 🔥 Hacer await de params
+  const station = await getStationById(id);
 
   if (!station) {
     notFound();

@@ -1,5 +1,5 @@
 import type { Station } from "./types"
-import { getAllStations } from "./station.service"
+import { getAllStations } from "./stations.actions"
 
 export async function getMockStations(): Promise<Station[]> {
   const data = await getAllStations()

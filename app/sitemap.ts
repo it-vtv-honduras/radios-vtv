@@ -1,6 +1,6 @@
 // app/sitemap.ts
 import type { MetadataRoute } from "next";
-import { getAllStations } from "@/lib/station.service";
+import { getAllStations } from "@/lib/stations.actions";
 import { stationSynonyms, normalize } from "@/lib/seo-stations";
 
 const SITE_URL = "https://www.radiosgrupovtv.com/";

@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, Save, Loader2, Plus, Trash2 } from "lucide-react";
 
-import { getStationById, updateStation } from "@/lib/station.service";
+import { getStationById, updateStation } from "@/lib/stations.actions";
 import type { Station, ProgramSegment } from "@/lib/types";
 import { ProtectedRoute } from "@/components/protected-route";
 

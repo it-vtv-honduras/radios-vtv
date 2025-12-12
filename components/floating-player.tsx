@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { useAudio } from "./audio-provider"
-import { Play, Pause, SkipForward, SkipBack, Volume2, VolumeX, X, AlertCircle, Radio, ChevronUp } from "lucide-react"
+import { Play, Pause, SkipForward, SkipBack, Volume2, VolumeX, X, AlertCircle, Radio, ChevronUp, Loader2 } from "lucide-react"
 import Image from "next/image"
 import { useState, useEffect } from "react"
 
@@ -11,6 +11,7 @@ export function FloatingPlayer() {
   const {
     currentStation,
     isPlaying,
+    isLoading,
     volume,
     isMuted,
     error,
@@ -49,7 +50,14 @@ export function FloatingPlayer() {
 
   const handleVolumeClick = (e: React.MouseEvent) => {
     e.stopPropagation()
-    setShowVolumeSlider(!showVolumeSlider)
+    // Toggle entre mostrar slider o hacer mute/unmute
+    if (showVolumeSlider) {
+      // Si el slider está visible, hacer toggle mute
+      toggleMute()
+    } else {
+      // Si el slider no está visible, mostrarlo
+      setShowVolumeSlider(true)
+    }
   }
 
   return (
@@ -84,13 +92,22 @@ export function FloatingPlayer() {
                     <Radio size={24} className="text-gray-400" />
                   </div>
                 )}
+                
+                {/* Indicador de carga sobre la imagen */}
+                {isLoading && (
+                  <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                    <Loader2 size={20} className="animate-spin text-white" />
+                  </div>
+                )}
               </div>
 
               <div className="min-w-0 flex-1">
                 <h3 className="font-medium text-sm md:text-base truncate text-gray-900 dark:text-white">
                   {currentStation.name}
                 </h3>
-                <p className="text-xs text-gray-500 dark:text-gray-400 truncate">{currentStation.genre}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
+                  {isLoading ? "Conectando..." : currentStation.genre}
+                </p>
               </div>
             </div>
 
@@ -100,7 +117,7 @@ export function FloatingPlayer() {
               <div className={`flex items-center space-x-1 ${isExpanded ? "flex" : "hidden md:flex"}`}>
                 <button
                   onClick={previous}
-                  disabled={stations.length <= 1}
+                  disabled={stations.length <= 1 || isLoading}
                   className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed text-gray-700 dark:text-gray-300"
                   aria-label="Anterior"
                 >
@@ -109,15 +126,22 @@ export function FloatingPlayer() {
 
                 <button
                   onClick={isPlaying ? pause : () => play()}
-                  className="p-3 rounded-full bg-primary hover:bg-primary/90 text-white"
+                  disabled={isLoading}
+                  className="p-3 rounded-full bg-primary hover:bg-primary/90 text-white disabled:opacity-50 disabled:cursor-not-allowed"
                   aria-label={isPlaying ? "Pausar" : "Reproducir"}
                 >
-                  {isPlaying ? <Pause size={20} /> : <Play size={20} />}
+                  {isLoading ? (
+                    <Loader2 size={20} className="animate-spin" />
+                  ) : isPlaying ? (
+                    <Pause size={20} />
+                  ) : (
+                    <Play size={20} />
+                  )}
                 </button>
 
                 <button
                   onClick={next}
-                  disabled={stations.length <= 1}
+                  disabled={stations.length <= 1 || isLoading}
                   className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed text-gray-700 dark:text-gray-300"
                   aria-label="Siguiente"
                 >
@@ -129,25 +153,43 @@ export function FloatingPlayer() {
               <div className={`relative ${isExpanded ? "flex" : "hidden md:flex"}`}>
                 <button
                   onClick={handleVolumeClick}
-                  className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300"
+                  className={`p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 ${
+                    isMuted ? 'opacity-50' : ''
+                  }`}
                   aria-label={isMuted ? "Activar sonido" : "Silenciar"}
                 >
                   {isMuted || volume === 0 ? <VolumeX size={18} /> : <Volume2 size={18} />}
                 </button>
 
                 {showVolumeSlider && (
-                  <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 p-3">
-                    <div className="flex flex-col items-center space-y-2">
+                  <div 
+                    className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 p-3"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {/* Desktop: Slider vertical */}
+                    <div className="hidden md:flex flex-col items-center space-y-2">
                       <input
                         type="range"
                         min="0"
                         max="100"
                         value={volume}
                         onChange={handleVolumeChange}
-                        className="w-24 h-2 bg-gray-200 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer accent-primary"
-                        style={{ writingMode: "bt-lr" }}
+                        className="h-24 w-2 bg-gray-200 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer accent-primary [writing-mode:vertical-lr] [direction:rtl]"
                       />
                       <span className="text-xs text-gray-500 dark:text-gray-400">{volume}%</span>
+                    </div>
+
+                    {/* Móvil: Slider horizontal */}
+                    <div className="md:hidden flex flex-col items-center space-y-2">
+                      <span className="text-xs text-gray-500 dark:text-gray-400 mb-1">{volume}%</span>
+                      <input
+                        type="range"
+                        min="0"
+                        max="100"
+                        value={volume}
+                        onChange={handleVolumeChange}
+                        className="w-32 h-2 bg-gray-200 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer accent-primary"
+                      />
                     </div>
                   </div>
                 )}

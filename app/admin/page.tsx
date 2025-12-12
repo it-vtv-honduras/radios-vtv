@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { getAllStations, deleteStation } from "@/lib/station.service"
+import { getAllStations, deleteStation } from "@/lib/stations.actions"
 import type { Station } from "@/lib/types"
 import { Plus, Edit, Trash2, Loader2, Clock } from "lucide-react"
 import Link from "next/link"

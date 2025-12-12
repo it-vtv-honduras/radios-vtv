@@ -1,7 +1,7 @@
 // app/estacion/[id]/layout.tsx
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { getStationById } from "@/lib/station.service";
+import { getStationById } from "@/lib/stations.actions";
 import {
   stationToMetadata,
   stationJsonLd,

@@ -1,0 +1,213 @@
+[
+  {
+    "id": "station-1751383690306",
+    "tags": [
+      "Rancheras",
+      "Banda",
+      "Corridos",
+      "Cumbia"
+    ],
+    "location": "Tegucigalpa, Honduras",
+    "frequency": "93.7",
+    "website": "",
+    "locutores": "Con Rafael Diaz Alcerro",
+    "genre": "Banda / Rancheras",
+    "coverImage": "/images/stations/station-1765512925505.webp",
+    "isActive": true,
+    "social": {
+      "facebook": "",
+      "twitter": "",
+      "instagram": "",
+      "youtube": "",
+      "whatsapp": ""
+    },
+    "programming": [
+      {
+        "horaFin": "17:00",
+        "horaInicio": "15:00",
+        "segmento": "Tardes Picosa",
+        "locutores": "Rafael Alcerro ",
+        "id": "b53dea29-dbb2-4572-9e7b-13ba26b2ea23"
+      }
+    ],
+    "name": "Picosa Radio",
+    "streamUrl": "https://stream.radiosgrupovtv.com/radio_Picosa",
+    "updatedAt": {
+      "seconds": 1760626019,
+      "nanoseconds": 54000000
+    },
+    "description": "PicosaTV es una emisora vibrante y auténtica que transmite desde Honduras, llevando a todo el país lo mejor de la música tropical, el entretenimiento local y el calor de nuestra gente. Con una programación dinámica y locutores carismáticos, PicosaTV se convierte en la voz del pueblo: alegre, cercana y siempre al ritmo de la cultura catracha. Ya sea que estés en casa, en el trabajo o de camino, PicosaTV te acompaña con energía, buena música y contenido que te hace sentir en familia."
+  },
+  {
+    "id": "station-1751488525014",
+    "description": "En Joya FM programamos las mejores canciones en inglés de los 80's y 90's, sólo joyas musicales!",
+    "updatedAt": {
+      "seconds": 1760585862,
+      "nanoseconds": 966000000
+    },
+    "social": {
+      "youtube": "",
+      "facebook": "https://www.facebook.com/JOYAFMHONDURAS",
+      "instagram": "",
+      "twitter": "",
+      "whatsapp": ""
+    },
+    "tags": [
+      "pop",
+      "inglés",
+      "adulto contemporaneo",
+      "80's"
+    ],
+    "isActive": true,
+    "website": "",
+    "programming": [],
+    "name": "Joya FM",
+    "coverImage": "https://firebasestorage.googleapis.com/v0/b/radios-vtv.firebasestorage.app/o/coverImages%2Fstation-1751488525014.webp?alt=media&token=8675e4ce-c0e0-4b49-a7b6-c5530778bf44",
+    "location": "Honduras",
+    "genre": "Adulto contemporanea",
+    "locutores": "",
+    "frequency": "95.3 FM",
+    "streamUrl": "https://stream.radiosgrupovtv.com/radio_Joya"
+  },
+  {
+    "id": "station-1752512997993",
+    "programming": [
+      {
+        "horaInicio": "17:00",
+        "id": "816bfa96-6b11-4df0-b0cb-cf89ab3aa381",
+        "segmento": "Tikitaka HN",
+        "locutores": "",
+        "horaFin": "18:00"
+      },
+      {
+        "horaFin": "09:00",
+        "id": "9a74c662-0edc-4996-b0aa-35c9b1c2e359",
+        "segmento": "Amigos del Futbol",
+        "locutores": "",
+        "horaInicio": "08:00"
+      },
+      {
+        "locutores": "Marvin Morel",
+        "id": "829a7bbb-4c1a-44d2-8490-8df687d99dcc",
+        "horaFin": "17:00",
+        "segmento": "Hoy en Noticias",
+        "horaInicio": "16:00"
+      },
+      {
+        "horaInicio": "06:00",
+        "id": "3bbd8e5c-76d1-4b7e-8dbb-aba25f24cbb2",
+        "locutores": "Any Romero",
+        "horaFin": "07:00",
+        "segmento": "Acción VTV Matutino"
+      },
+      {
+        "segmento": "Acción VTV Meridiano",
+        "id": "c54440e1-51fb-4da3-9ae5-f39c8feffff1",
+        "horaFin": "14:00",
+        "horaInicio": "13:00",
+        "locutores": "Carlos Ramos"
+      },
+      {
+        "locutores": "Janeth Flores",
+        "id": "b2696b2a-1ed9-4348-a379-be089197d6d7",
+        "horaFin": "20:00",
+        "horaInicio": "19:00",
+        "segmento": "Acción VTV Estelar"
+      },
+      {
+        "id": "3e59fc55-1a92-402a-b0d6-e6f4f5e98243",
+        "locutores": "Enma Calderón",
+        "horaInicio": "07:00",
+        "segmento": "Dialogo de Impacto",
+        "horaFin": "08:00"
+      }
+    ],
+    "description": "Póngale Acción a su vida con Acción radio, 92.5 FM Tegucigalpa y San Pedro Sula. Acción deportiva, acción noticiosa y acción musical.",
+    "isActive": true,
+    "updatedAt": {
+      "seconds": 1760627165,
+      "nanoseconds": 704000000
+    },
+    "name": "Acción Radio",
+    "location": "Honduras",
+    "website": "",
+    "frequency": "92.5 FM",
+    "genre": "Musical y Noticiosa",
+    "locutores": "",
+    "tags": [
+      "Clasicos",
+      "Español",
+      "noticias",
+      "deportes"
+    ],
+    "streamUrl": "https://stream.radiosgrupovtv.com/radio_Accion",
+    "coverImage": "https://firebasestorage.googleapis.com/v0/b/radios-vtv.firebasestorage.app/o/coverImages%2Fstation-1752512997993.webp?alt=media&token=a68c60da-1449-4d56-b85b-17a49a4ebff7",
+    "social": {
+      "instagram": "",
+      "facebook": "https://www.facebook.com/profile.php?id=100083234366126",
+      "youtube": "",
+      "twitter": "",
+      "whatsapp": ""
+    }
+  },
+  {
+    "id": "station-1752514591186",
+    "frequency": "99.7 FM",
+    "coverImage": "https://firebasestorage.googleapis.com/v0/b/radios-vtv.firebasestorage.app/o/coverImages%2Fstation-1752514591186.webp?alt=media&token=2b5c6e8d-e555-4ca1-947b-617625f3af55",
+    "programming": [],
+    "name": "La Pegajoza Radio",
+    "genre": "Urbano",
+    "isActive": true,
+    "updatedAt": {
+      "seconds": 1760585793,
+      "nanoseconds": 35000000
+    },
+    "streamUrl": "https://stream.radiosgrupovtv.com/radio_Pegajoza",
+    "social": {
+      "youtube": "",
+      "instagram": "",
+      "whatsapp": "",
+      "twitter": "",
+      "facebook": "https://www.facebook.com/lapegajozaradiohn"
+    },
+    "tags": [
+      "Urbana",
+      "Regueton",
+      "Playero"
+    ],
+    "location": "Honduras",
+    "locutores": "",
+    "description": "Una nueva propuesta de radio juvenil, con los mejores locutores, llega La Pegoza Radio.\n99.7 FM Tegucigalpa\n101.7 FM San Pedro Sula",
+    "website": ""
+  },
+  {
+    "id": "station-1752520082331",
+    "programming": [],
+    "name": "Mia FM",
+    "streamUrl": "https://stream.radiosgrupovtv.com/radio_Mia",
+    "social": {
+      "youtube": "",
+      "twitter": "",
+      "instagram": "",
+      "whatsapp": "",
+      "facebook": ""
+    },
+    "updatedAt": {
+      "seconds": 1760020206,
+      "nanoseconds": 975000000
+    },
+    "coverImage": "https://firebasestorage.googleapis.com/v0/b/radios-vtv.firebasestorage.app/o/coverImages%2Fstation-1752520082331.webp?alt=media&token=e55b479f-6ba2-4efc-8db5-a55867da6645",
+    "locutores": "",
+    "website": "",
+    "frequency": "96.1 FM",
+    "location": "Honduras",
+    "tags": [
+      "pop",
+      "latino",
+      "Top40"
+    ],
+    "isActive": true,
+    "genre": "Pop en Español / Top 40",
+    "description": "En Mia FM suenan los mejores y más recientes éxitos de la música en español. Mia FM, la radio mía y la tuya también."
+  }
+]

@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { Save, Plus, Trash2, Loader2 } from "lucide-react";
-import { createStation } from "@/lib/station.service";
+import { createStation } from "@/lib/stations.actions";
 import type { Station, ProgramSegment } from "@/lib/types";
 
 export default function NewStationPage() {

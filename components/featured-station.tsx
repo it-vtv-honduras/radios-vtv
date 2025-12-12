@@ -36,7 +36,8 @@ export function FeaturedStation({ station }: FeaturedStationProps) {
             src={station.coverImage || "/placeholder.svg?height=400&width=400"}
             alt={station.name}
             fill
-            className="h-[85%] w-auto"
+            className="object-contain p-6"
+            sizes="(max-width: 1280px) 100vw, 35vw"
           />
 
           {/* Indicador de reproducción activa */}

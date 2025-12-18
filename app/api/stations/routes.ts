@@ -4,7 +4,7 @@ import {
   createStation, 
   updateStation, 
   deleteStation 
-} from '@/lib/station.service';
+} from '@/lib/stations.actions';
 import type { Station } from '@/lib/types';
 
 // GET - Obtener todas las estaciones

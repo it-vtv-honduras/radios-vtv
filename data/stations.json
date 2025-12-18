@@ -209,5 +209,27 @@
     "isActive": true,
     "genre": "Pop en Español / Top 40",
     "description": "En Mia FM suenan los mejores y más recientes éxitos de la música en español. Mia FM, la radio mía y la tuya también."
+  },
+  {
+    "name": "Tropical FM",
+    "genre": "Merengue / Salsa / Bachata / Cumbia / Punta",
+    "coverImage": "/images/stations/station-1766029619246.webp",
+    "streamUrl": "https://stream.radiosgrupovtv.com/radio_Tropical",
+    "description": "Aquí escucharas la mejor musica tropical, Los géneros que mueven el mundo.\nMerengue, salsa, bachata, punta y cumbia.",
+    "isActive": true,
+    "frequency": "106.9 FM",
+    "location": "",
+    "website": "",
+    "social": {
+      "facebook": "",
+      "twitter": "",
+      "instagram": "",
+      "youtube": "",
+      "whatsapp": ""
+    },
+    "tags": [],
+    "programming": [],
+    "locutores": "",
+    "id": "station-1766029619357"
   }
 ]
